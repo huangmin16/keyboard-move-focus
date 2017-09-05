@@ -45,22 +45,26 @@ class SwitchFocus {
         // console.log(currentFocus.nextElementSibling)
       }
     } else if (currentKeyCode == keydownValue.leftKey) { //zuo
-      if (currentFocus.getAttribute('type') == 'text' || currentFocus.getAttribute('type') == 'password') {
-
-      } else {
-        event.preventDefault();
-        this.findLastFocusNode(currentFocus)
+      if (currentFocus.nodeName == 'INPUT') {
+        if (currentFocus.getAttribute('type') == 'text' || currentFocus.getAttribute('type') == 'password'|| currentFocus.getAttribute('type') == null) {
+            console.log(111)
+        } else {
+          event.preventDefault();
+          this.findLastFocusNode(currentFocus)
+        }
       }
     } else if (currentKeyCode == keydownValue.upKey) { //shang
       event.preventDefault();
       this.findLastFocusNode(currentFocus)
     } else if (currentKeyCode == keydownValue.rightKey) { //you
-      if (currentFocus.getAttribute('type') == 'text' || currentFocus.getAttribute('type') == 'password') {
-
-      } else {
-        event.preventDefault();
-        this.findNextFocusNode(currentFocus)
-      }
+        if (currentFocus.nodeName == 'INPUT') {
+            if (currentFocus.getAttribute('type') == 'text' || currentFocus.getAttribute('type') == 'password'|| currentFocus.getAttribute('type') == null) {
+                console.log(111)
+            } else {
+              event.preventDefault();
+              this.findNextFocusNode(currentFocus)
+            }
+          }
     } else if (currentKeyCode == keydownValue.downKey) { //xia
       if (currentFocus.nodeName == canFocusNodeMap[2]) {
 
@@ -173,11 +177,6 @@ class SwitchFocus {
     if (node.nodeName == 'BODY') {
       return
     }
-    // while(!this.lastfoward(node)){
-    //   this.findLastFocusNode(node)
-    // }
-    // if(!this.lastfoward(node))
-    //   this.findLastFocusNode(node)
     this.lastfoward(node)
     if (document.activeElement == currentFocus) {
       this.findLastFocusNode(node)
